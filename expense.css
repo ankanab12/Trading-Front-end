@@ -1,0 +1,146 @@
+/* ---------- BODY & GLOBAL ---------- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fefce8;
+  color: #065f46;
+}
+
+h2, h3 {
+  margin: 10px 0;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+input, select {
+  padding: 8px;
+  margin-top: 5px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #065f46, #10b981);
+  padding: 10px 20px;
+  color: white;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 40px; }
+.nav-links { list-style: none; display: flex; gap: 20px; }
+.nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: #fbbf24; }
+.dropdown { position: relative; }
+.dropdown-content {
+  display: none; position: absolute; top: 100%; background: #10b981;
+  list-style: none; padding: 10px 0; border-radius: 5px;
+}
+.dropdown-content li { padding: 5px 20px; }
+.dropdown-content li a { color: white; }
+.dropdown:hover .dropdown-content { display: block; }
+/* ---------- CONTAINER ---------- */
+.container {
+  padding: 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* ---------- JOB FORM ---------- */
+.job-form {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background: #10b981;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #065f46;
+}
+
+/* ---------- BUSINESS CONFIRMATION & EXPENSE ROWS ---------- */
+.bc-row, .expense-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.bc-row input, .expense-row input, .expense-row select {
+  flex: 1;
+  min-width: 150px;
+}
+
+.bc-row button {
+  background: red;
+  color: white;
+}
+
+.expense-row .removeExpense {
+  background: red;
+  color: white;
+}
+
+/* ---------- TABLE ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+
+.actions button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+}
+
+/* ---------- FILTER ---------- */
+.filter {
+  margin: 20px 0;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .bc-row, .expense-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions button {
+    margin: 5px 2px;
+    width: 100%;
+  }
+}

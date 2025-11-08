@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hemraj Group | Trading Expense Dashboard</title>
+  <link rel="stylesheet" href="expense.css">
+  <link rel="icon" type="image/png" href="assets/favicon.ico">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Hemraj Group Logo">
+      <span>Hemraj Group</span>
+    </div>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Dashboards ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="purchase-dashboard.html">Purchase Dashboard</a></li>
+          <li><a href="sells-dashboard.html">Sells Dashboard</a></li>
+          <li><a href="summary.html">Summary Dashboard</a></li>
+        </ul>
+      </li>
+      <li><a href="purchase.html">Trading Purchase</a></li>
+      <li><a href="sells.html">Trading Sells</a></li>
+      <li><a href="expense.html">Trading Expense</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Trading Expense Entry</h2>
+
+    <div class="job-form">
+      <label>Job No.</label>
+      <input type="text" id="jobNo" placeholder="Enter Job No.">
+
+      <label>Overall Job Quantity (MT)</label>
+      <input type="number" id="overallQty" placeholder="Enter Total Quantity (MT)" step="0.01">
+
+      <h3>Business Confirmations</h3>
+      <div id="bcContainer"></div>
+      <button type="button" id="addBCBtn">+ Add Business Confirmation</button>
+
+      <h3>Expense Heads (INR)</h3>
+      <div id="expenseContainer"></div>
+      <button type="button" id="addExpenseBtn">+ Add Expense</button>
+
+      <button type="button" id="submitBtn">Submit Job</button>
+    </div>
+
+    <div class="filter">
+      <label>Filter by Job No:</label>
+      <input type="text" id="filterInput" placeholder="Enter Job No.">
+    </div>
+
+    <table id="resultTable">
+      <thead>
+        <tr>
+          <th>Job No.</th>
+          <th>Average Rate/MT</th>
+          <th>Average Expense/MT</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="expense.js"></script>
+</body>
+</html>

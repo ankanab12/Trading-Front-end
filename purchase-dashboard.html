@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hemraj Group | Trading Summary Dashboard</title>
+  <link rel="stylesheet" href="purchase-dashboard.css" />
+  <link rel="icon" type="image/png" href="assets/favicon.ico" />
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-2.26.1.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Hemraj Group Logo" />
+      <span>Hemraj Group</span>
+    </div>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Dashboards ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="purchase-dashboard.html">Purchase Dashboard</a></li>
+          <li><a href="sells-dashboard.html">Sells Dashboard</a></li>
+          <li><a href="summary.html">Summary Dashboard</a></li>
+        </ul>
+      </li>
+      <li><a href="purchase.html">Trading Purchase</a></li>
+      <li><a href="sells.html">Trading Sells</a></li>
+      <li><a href="expense.html">Trading Expense</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <header class="controls">
+      <div class="card-filters">
+        <label>
+          Cards — Month:
+          <input id="cardsMonth" type="month" />
+        </label>
+        <button id="applyCardsMonth">Apply</button>
+        <button id="clearCardsMonth" title="Clear month">Clear</button>
+      </div>
+
+      <div class="graph-filters">
+        <label>From:
+          <input id="graphFrom" type="date" />
+        </label>
+        <label>To:
+          <input id="graphTo" type="date" />
+        </label>
+        <label>Commodity:
+          <select id="commodityFilter">
+            <option value="All">All</option>
+          </select>
+        </label>
+        <button id="applyGraphFilters">Apply</button>
+        <button id="clearGraphFilters">Clear</button>
+      </div>
+    </header>
+
+    <section class="cards-grid" id="cardsGrid">
+      <div class="card" id="cardLastUpdated">
+        <div class="card-title">Last Updated</div>
+        <div class="card-value" id="lastUpdatedValue">--</div>
+      </div>
+
+      <div class="card" id="cardTotalPurchases">
+        <div class="card-title">Total Purchases</div>
+        <div class="card-value" id="totalPurchasesValue">0</div>
+      </div>
+
+      <div class="card" id="cardTotalUSD">
+        <div class="card-title">Total Amount (USD)</div>
+        <div class="card-value" id="totalUSDValue">0.00</div>
+      </div>
+
+      <div class="card" id="cardTotalINR">
+        <div class="card-title">Total Amount (INR)</div>
+        <div class="card-value" id="totalINRValue">0.00</div>
+      </div>
+
+      <div class="card" id="cardTotalQty">
+        <div class="card-title">Total Buying Quantity (MT)</div>
+        <div class="card-value" id="totalQtyValue">0.00</div>
+      </div>
+    </section>
+
+    <section class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-header">Number of Purchases by Date</div>
+        <div id="chartPurchasesByDate" class="chart"></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">Commodity wise Distribution</div>
+        <div id="chartCommodityPie" class="chart"></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">Total Purchase Amount (USD) — By Date</div>
+        <div id="chartAmountLine" class="chart"></div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">Buying Quantity (MT) — By Date & Commodity</div>
+        <div id="chartQuantityByCommodity" class="chart"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="purchase-dashboard.js"></script>
+</body>
+</html>

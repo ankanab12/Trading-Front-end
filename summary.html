@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hemraj Group | Trading Summary Dashboard</title>
+  <link rel="stylesheet" href="summary.css">
+  <link rel="icon" type="image/png" href="assets/favicon.ico">
+
+  <!-- jsPDF + AutoTable (required for PDF generation) -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.28/dist/jspdf.plugin.autotable.min.js"></script>
+  <!-- jsPDF + AutoTable -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.28/dist/jspdf.plugin.autotable.min.js"></script>
+
+</head>
+<body>
+  <!-- NAVBAR (keep exactly as provided) -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Hemraj Group Logo">
+      <span>Hemraj Group</span>
+    </div>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Dashboards ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="purchase-dashboard.html">Purchase Dashboard</a></li>
+          <li><a href="sells-dashboard.html">Sells Dashboard</a></li>
+          <li><a href="summary.html">Summary Dashboard</a></li>
+        </ul>
+      </li>
+      <li><a href="purchase.html">Trading Purchase</a></li>
+      <li><a href="sells.html">Trading Sells</a></li>
+      <li><a href="expense.html">Trading Expense</a></li>
+    </ul>
+  </nav>
+
+  <!-- TOTAL PURCHASE CARD (Date Range Summary) -->
+<div class="purchase-summary-card">
+  <div class="purchase-summary-controls">
+    <label>From:</label>
+    <input type="date" id="purchaseFromDate">
+    <label>To:</label>
+    <input type="date" id="purchaseToDate">
+    <button id="fetchPurchaseSummaryBtn" class="btn small">Get Purchase Summary</button>
+  </div>
+  <div class="purchase-summary-display">
+    <div class="purchase-total-card">
+      <h2>Total Purchase Amount (INR)</h2>
+      <p id="purchaseTotalAmount">—</p>
+    </div>
+  </div>
+</div>
+
+<!-- TOTAL NETT CARD (Date Range Summary) -->
+<div class="nett-summary-card">
+  <div class="nett-summary-controls">
+    <label>From:</label>
+    <input type="date" id="nettFromDate">
+    <label>To:</label>
+    <input type="date" id="nettToDate">
+    <button id="fetchNettSummaryBtn" class="btn small">Get Nett Summary</button>
+  </div>
+  <div class="nett-summary-display">
+    <div class="nett-total-card">
+      <h2>Total Sell Amount (INR)</h2>
+      <p id="nettTotalAmount">—</p>
+    </div>
+  </div>
+</div>
+
+<!-- TOTAL EXPENSE CARD (Date Range Summary) -->
+<div class="expense-summary-card">
+  <div class="expense-summary-controls">
+    <label>From:</label>
+    <input type="date" id="expenseFromDate">
+    <label>To:</label>
+    <input type="date" id="expenseToDate">
+    <button id="fetchExpenseSummaryBtn" class="btn small">Get Expense Summary</button>
+  </div>
+  <div class="expense-summary-display">
+    <div class="expense-total-card">
+      <h2>Total Expense Amount (INR)</h2>
+      <p id="expenseTotalAmount">—</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROFIT / LOSS SUMMARY CARD -->
+<div class="profit-summary-card">
+  <div class="profit-summary-controls">
+    <label>From:</label>
+    <input type="date" id="profitFromDate">
+    <label>To:</label>
+    <input type="date" id="profitToDate">
+    <button id="fetchProfitSummaryBtn" class="btn small">Get Profit/Loss Summary</button>
+    <button id="exportProfitPDFBtn" class="btn small">Download PDF</button>
+  </div>
+
+  <div class="profit-summary-display">
+    <div class="profit-total-card">
+      <h2>Profit / Loss (INR)</h2>
+      <p id="profitTotalAmount">—</p>
+      <small id="profitBreakdown"></small>
+    </div>
+  </div>
+</div>
+
+
+  <!-- MAIN CONTENT -->
+  <section class="summary-container">
+    <h1>Commodity Wise Summary</h1>
+
+    <div class="filters-row">
+      <input type="text" id="filterInput" placeholder="🔍 Filter by Job No..." />
+      <select id="commodityFilter">
+        <option value="">All Commodities</option>
+      </select>
+
+      <button id="exportFilteredPDFBtn" class="btn small">Export Filtered PDF</button>
+      <button id="exportFilteredCSVBtnTop" class="btn small">Export Filtered CSV</button>
+    </div>
+
+    <!-- Summary cards (keeps original card-grid behavior, but now reflects commodity filter) -->
+    <div id="summaryGrid" class="card-grid"></div>
+
+    <hr style="margin:24px 0; border: none; height:1px; background:#e5e7eb;">
+
+    <!-- Table view (as requested: data in table format) -->
+    <div class="table-controls">
+      <span id="tableRowsCount">0 record(s)</span>
+      <input type="text" id="tableJobFilter" placeholder="Filter table by Job No..." />
+      <input type="text" id="tableCommodityFilter" placeholder="Filter table by Commodity..." />
+    </div>
+
+    <div class="table-wrap">
+      <table id="jobsTable">
+        <thead>
+          <tr>
+            <th>Job No</th>
+            <th>Overall Qty (MT)</th>
+            <th>Commodity</th>
+            <th>Stock Location</th>
+            <th>Origin</th>
+            <th>Current Job Qty (MT)</th>
+            <th>Sold Qty (MT)</th>
+            <th>Total Nett (Rs)</th>
+            <th>Total Expense (Rs)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="jobsTableBody"></tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <script src="summary.js"></script>
+</body>
+</html>

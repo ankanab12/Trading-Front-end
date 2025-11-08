@@ -1,0 +1,80 @@
+/* sells.css - styling for trading sells page */
+
+/* Reset-ish */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: "Segoe UI", Roboto, Arial, sans-serif; background: #fefce8; color: #0f172a; }
+a { color: inherit; }
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #065f46, #10b981);
+  padding: 10px 20px;
+  color: white;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 40px; }
+.nav-links { list-style: none; display: flex; gap: 20px; }
+.nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: #fbbf24; }
+.dropdown { position: relative; }
+.dropdown-content {
+  display: none; position: absolute; top: 100%; background: #10b981;
+  list-style: none; padding: 10px 0; border-radius: 5px;
+}
+.dropdown-content li { padding: 5px 20px; }
+.dropdown-content li a { color: white; }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* Container */
+.container { max-width: 1180px; margin: 20px auto; padding: 0 16px; }
+
+/* Cards */
+.card { background: white; border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; box-shadow: 0 6px 18px rgba(2,6,23,0.06); }
+h2 { margin: 0 0 12px 0; font-size: 1.15rem; }
+
+/* Job grid */
+.job-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; align-items: end; }
+.job-grid label { display: flex; flex-direction: column; gap: 6px; font-size: 0.95rem; }
+.job-grid input[type="text"], .job-grid input[type="number"], .job-grid input[type="date"] {
+  padding: 8px 10px; border-radius: 6px; border: 1px solid #e6e6e6;
+}
+
+/* current qty box */
+.current-qty { display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
+#currentQtyDisplay { padding: 8px 12px; border-radius: 6px; background: #f1f5f9; border: 1px dashed #cbd5e1; min-width: 160px; font-weight: 600; }
+
+/* Buttons */
+.btn { padding: 8px 12px; border-radius: 8px; border: none; cursor: pointer; background: #e6e6e6; }
+.btn.primary { background: #065f46; color: white; }
+.btn:hover { opacity: 0.95; transform: translateY(-1px); }
+
+/* Hidden helper */
+.hidden { display: none !important; }
+.other-input { margin-top: 6px; padding: 6px 8px; border-radius: 6px; border: 1px solid #ddd; }
+
+/* BC form */
+.bc-form { display: flex; flex-direction: column; gap: 10px; }
+.form-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; align-items: start; }
+.form-row label { display:flex; flex-direction: column; gap:6px; font-size:0.95rem; }
+.form-actions { display:flex; gap:10px; align-items:center; justify-content:flex-end; }
+
+/* Filters */
+.filters-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-items: end; }
+.filter-actions { grid-column: 5 / 6; display:flex; gap:8px; }
+
+/* Table */
+.table-card { overflow-x: auto;  }
+#bcTable { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin-top: 8px; }
+#bcTable thead th { text-align:left; background:#f1f5f9; padding:10px; border-bottom: 1px solid #e6e6e6; position: sticky; top: 56px; z-index: 2; }
+#bcTable tbody td { padding:10px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+.table-actions { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .job-grid, .form-row, .filters-grid { grid-template-columns: 1fr; }
+  .filters-grid { grid-template-columns: 1fr 1fr; }
+  .filter-actions { grid-column: 1 / -1; }
+}

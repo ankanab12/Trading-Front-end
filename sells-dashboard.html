@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hemraj Group | Trading Sells Dashboard</title>
+  <link rel="stylesheet" href="sells-dashboard.css">
+  <link rel="icon" type="image/png" href="assets/favicon.ico">
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body>
+  <!-- ======== NAVBAR (DO NOT MODIFY) ======== -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Hemraj Group Logo">
+      <span>Hemraj Group</span>
+    </div>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Dashboards ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="purchase-dashboard.html">Purchase Dashboard</a></li>
+          <li><a href="sells-dashboard.html">Sells Dashboard</a></li>
+          <li><a href="summary.html">Summary Dashboard</a></li>
+        </ul>
+      </li>
+      <li><a href="purchase.html">Trading Purchase</a></li>
+      <li><a href="sells.html">Trading Sells</a></li>
+      <li><a href="expense.html">Trading Expense</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== DASHBOARD SECTION ======== -->
+  <div class="dashboard-container">
+    <div class="header">
+      <h2>Trading Sells Dashboard</h2>
+      <div class="month-filter">
+        <label for="monthFilter">Select Month:</label>
+        <input type="month" id="monthFilter">
+      </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="cards">
+      <div class="card"><h3>Last Updated</h3><p id="lastUpdated">—</p></div>
+      <div class="card"><h3>No. of Jobs with buisness deals</h3><p id="jobsCount">—</p></div>
+      <div class="card"><h3>Total Nett Amount</h3><p id="totalNett">—</p></div>
+      <div class="card"><h3>No. of Commodities</h3><p id="commodityCount">—</p></div>
+      <div class="card"><h3>Total Quantity (MT)</h3><p id="totalQty">—</p></div>
+    </div>
+
+    <!-- Graphs -->
+    <div class="charts">
+      <!-- 1️⃣ Quantity by Commodity (Bar) -->
+      <div class="chart-block">
+        <h3>Commodity-wise Quantity Distribution</h3>
+        <div class="filter">
+          <input type="date" id="barFrom"> to 
+          <input type="date" id="barTo">
+          <button id="barApply">Apply</button>
+        </div>
+        <div id="barCommodityQty"></div>
+      </div>
+
+      <!-- 2️⃣ Commodity Share (Donut) -->
+      <div class="chart-block">
+        <h3>Commodity Share (Quantity %)</h3>
+        <div class="filter">
+          <input type="date" id="donutFrom"> to 
+          <input type="date" id="donutTo">
+          <button id="donutApply">Apply</button>
+        </div>
+        <div id="donutCommodityShare"></div>
+      </div>
+
+      <!-- 3️⃣ Amount over Time (Line Chart) -->
+      <div class="chart-block">
+        <h3>Amount Trend Over Time</h3>
+        <div class="filter">
+          <input type="date" id="lineFrom"> to 
+          <input type="date" id="lineTo">
+          <button id="lineApply">Apply</button>
+        </div>
+        <div id="lineAmount"></div>
+      </div>
+
+      <!-- 4️⃣ Job Quantity Breakdown (Bar) -->
+      <div class="chart-block">
+        <h3>Job-wise Quantity Breakdown</h3>
+        <div class="filter">
+          <label for="jobFilter">Job No:</label>
+          <select id="jobFilter"></select>
+        </div>
+        <div id="jobQtyBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="sells-dashboard.js"></script>
+</body>
+</html>

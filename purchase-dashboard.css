@@ -1,0 +1,192 @@
+/* purchase-summary.css - light, professional theme */
+:root {
+  --accent1: #065f46;
+  --accent2: #10b981;
+  --muted: #6b7280;
+  --bg: #fbfefc;
+  --card-bg: #ffffff;
+  --glass: rgba(255,255,255,0.6);
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(15,23,42,0.08);
+  --card-padding: 18px;
+  --max-width: 1200px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg,#fbfbf9, #fefefc);
+  color: #0f172a;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #065f46, #10b981);
+  padding: 10px 20px;
+  color: white;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 40px; }
+.nav-links { list-style: none; display: flex; gap: 20px; }
+.nav-links a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: #fbbf24; }
+.dropdown { position: relative; }
+.dropdown-content {
+  display: none; position: absolute; top: 100%; background: #10b981;
+  list-style: none; padding: 10px 0; border-radius: 5px;
+}
+.dropdown-content li { padding: 5px 20px; }
+.dropdown-content li a { color: white; }
+.dropdown:hover .dropdown-content { display: block; }
+/* MAIN CONTAINER */
+.container {
+  max-width: var(--max-width);
+  margin: 22px auto;
+  padding: 18px;
+}
+
+/* CONTROLS AREA */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.card-filters, .graph-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.controls label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.controls input[type="month"],
+.controls input[type="date"],
+.controls select {
+  padding: 8px 10px;
+  border: 1px solid #e6e9ee;
+  border-radius: 8px;
+  background: var(--card-bg);
+  font-size: 14px;
+}
+
+/* CARDS GRID */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: linear-gradient(rgb(38, 255, 237),rgb(106, 163, 249));
+  padding: var(--card-padding);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-title {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.card-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0b1220;
+}
+
+.card-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* CHARTS - CENTERED LAYOUT */
+.charts-grid {
+  display: flex;
+  flex-direction: column;     /* stack charts vertically */
+  gap: 28px;                  /* space between each chart card */
+  align-items: center;        /* center all chart cards horizontally */
+  width: 100%;
+}
+
+/* Chart card */
+.chart-card {
+  background: linear-gradient(white,rgb(60, 245, 255));
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  min-height: 380px;
+  width: 90%;                 /* centered width */
+  max-width: 1200px;          /* prevent too-wide stretch */
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* center contents inside card */
+  justify-content: center;    /* vertically center chart area */
+  margin: 0 auto;             /* ensure horizontal centering */
+}
+
+/* Chart header */
+.chart-header {
+  font-size: 15px;
+  color: #0f172a;
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-align: center;         /* header centered above chart */
+  width: 100%;
+}
+
+/* Chart canvas or container */
+.chart {
+  flex: 1;
+  min-height: 320px;
+  width: 90%;                 /* narrower than card edges */
+  display: flex;
+  align-items: center;        /* center vertically */
+  justify-content: center;    /* center horizontally */
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 1100px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .chart-card {
+    width: 100%;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .chart-card {
+    padding: 14px;
+    min-height: 260px;
+  }
+}

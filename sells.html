@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hemraj Group | Trading Sells</title>
+
+  <link rel="stylesheet" href="sells.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+  <link rel="icon" type="image/png" href="assets/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Hemraj Group Logo" />
+      <span>Hemraj Group</span>
+    </div>
+    <ul class="nav-links">
+      <li class="dropdown">
+        <a href="#">Dashboards ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="purchase-dashboard.html">Purchase Dashboard</a></li>
+          <li><a href="sells-dashboard.html">Sells Dashboard</a></li>
+          <li><a href="summary.html">Summary Dashboard</a></li>
+        </ul>
+      </li>
+      <li><a href="purchase.html">Trading Purchase</a></li>
+      <li><a href="sells.html">Trading Sells</a></li>
+      <li><a href="expense.html">Trading Expense</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <section class="job-section card">
+      <h2>Job Details</h2>
+      <div class="job-grid">
+        <label>
+          Job No.
+          <input type="text" id="jobNoInput" placeholder="e.g. JOB-2025-001" />
+        </label>
+
+        <label>
+          Overall Job Quantity (MT)
+          <input type="number" id="overallQtyInput" min="0" step="0.01" placeholder="e.g. 100.00" />
+        </label>
+
+        <label>
+          Commodity
+          <select id="jobCommoditySelect">
+            <option>Canadian Yellow Peas</option>
+            <option>Russian/Ukrainian Yellow Peas</option>
+            <option>Australian Red Lentils-Nipper</option>
+            <option>Australian Red Lentils-Nugget</option>
+            <option>Canadian Red Lentils-Crimson</option>
+            <option>Australian Chickpeas</option>
+            <option>Tanzanian Chickpeas</option>
+            <option>Indian Desi Chickpeas</option>
+            <option>Black Matpe- FAQ</option>
+            <option>Black Matpe- SQ</option>
+            <option>Pigeon Peas-Lemon</option>
+            <option>Wheat Milling Quality</option>
+            <option>Maize</option>
+            <option>Sugar S-30/S-31</option>
+            <option>Sugar M-30/M-31</option>
+            <option>Sugar L-30/L-31</option>
+            <option>Cumin</option>
+            <option>Coriander</option>
+            <option>Turmeric</option>
+            <option>Rice</option>
+            <option>Oil</option>
+            <option>Other</option>
+          </select>
+          <input type="text" id="jobCommodityOther" class="hidden other-input" placeholder="Enter commodity" />
+        </label>
+
+        <label>
+          Stock Location
+          <input type="text" id="stockLocationInput" placeholder="Enter stock location" />
+        </label>
+
+        <label>
+          Origin
+          <input type="text" id="originInputJob" placeholder="Enter origin" />
+        </label>
+
+        <div class="current-qty">
+          <label>Current Job Quantity (MT)</label>
+          <div id="currentQtyDisplay">— MT</div>
+        </div>
+
+        <div class="actions-row">
+          <button id="saveJobBtn" class="btn primary">Save Job</button>
+          <button id="addBusinessBtn" class="btn">Add New Business</button>
+          <button id="exportJobCSVBtn" class="btn">Export Job CSV</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="bcFormSection" class="card hidden">
+      <h2>New Business Confirmation</h2>
+      <form id="bcForm" class="bc-form">
+        <div class="form-row">
+          <label>Business Confirmation No.
+            <input type="text" id="bcNo" required />
+          </label>
+
+          <label>Date
+            <input type="date" id="bcDate" required />
+          </label>
+
+          <label>Job No.
+            <input type="text" id="bcJobNo" readonly />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Seller
+            <select id="sellerSelect">
+              <option>Hemraj Industries Pvt. Ltd.</option>
+              <option>Radheshyam Industries Pvt. Ltd.</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="sellerOther" class="hidden other-input" placeholder="Enter seller name" />
+          </label>
+
+          <label>Buyer
+            <input type="text" id="buyerInput" value="Name & Full Details with KYC required before lifting" />
+          </label>
+
+          <label>Commodity
+            <select id="commoditySelect">
+
+              <option>Canadian Yellow Peas</option>
+              <option>Russian/Ukrainian Yellow Peas</option>
+              <option>Australian Red Lentils-Nipper</option>
+              <option>Australian Red Lentils-Nugget</option>
+              <option>Canadian Red Lentils-Crimson</option>
+              <option>Australian Chickpeas</option>
+              <option>Tanzanian Chickpeas</option>
+              <option>Indian Desi Chickpeas</option>
+              <option>Black Matpe- FAQ</option>
+              <option>Black Matpe- SQ</option>
+              <option>Pigeon Peas-Lemon</option>
+              <option>Wheat Milling Quality</option>
+              <option>Maize</option>
+              <option>Sugar S-30/S-31</option>
+              <option>Sugar M-30/M-31</option>
+              <option>Sugar L-30/L-31</option>
+              <option>Cumin</option>
+              <option>Coriander</option>
+              <option>Turmeric</option>
+              <option>Rice</option>
+              <option>Oil</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="commodityOther" class="hidden other-input" placeholder="Enter commodity" />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Origin
+            <input type="text" id="originInput" placeholder="Enter origin" />
+          </label>
+
+          <label>Quantity (MT)
+            <input type="number" id="qtyInput" min="0" step="0.01" required />
+          </label>
+
+          <label>Rate / MT (Rs)
+            <input type="number" id="rateInput" min="0" step="0.01" required />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Nett Amount (Rs)
+            <div id="nettAmountDisplay">—</div>
+          </label>
+
+          <label>Delivery / Lifting Period
+            <input type="date" id="deliveryDate" />
+          </label>
+
+          <label>Delivery Location
+            <input type="text" id="deliveryLocation" />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Quality Specifications
+            <select id="qualitySelect">
+              <option>As is Where is Basis. No claim.</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="qualityOther" class="hidden other-input" placeholder="Enter quality specs" />
+          </label>
+
+          <label>Packaging
+            <select id="packagingSelect">
+              <option>50 Kg PP Bag Approx</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="packagingOther" class="hidden other-input" placeholder="Enter packaging" />
+          </label>
+
+          <label>Payment Terms
+            <select id="paymentSelect">
+              <option>Advance Before Lifting</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="paymentOther" class="hidden other-input" placeholder="Enter payment terms" />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Brokerage
+            <select id="brokerageSelect">
+              <option>As Per Kolkata Market Terms</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="brokerageOther" class="hidden other-input" placeholder="Enter brokerage" />
+          </label>
+
+          <label>Broker Name
+            <input type="text" id="brokerName" />
+          </label>
+
+          <label>KYC's
+            <input type="text" id="kycInput" value="Buyers GST certificate/Trade License/Pan/Cancel Chq/TDS Declaration." />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Terms & Conditions
+            <select id="termsSelect">
+              <option>If the Buyer fails to adhere to payment terms under this Agreement, the Seller Shall have the liberty to sell the Cargo to an alternative customer at the Buyers risk and cost, and the Buyer shall be liable to make good the loss suffered by Seller in this regard. This is without prejudice to the Seller's other rights, remedies available under contract for breach or at law or otherwise.</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="termsOther" class="hidden other-input" placeholder="Enter T&C" />
+          </label>
+
+          <label>Special Notes
+            <select id="notesSelect">
+              <option>Full Payment needs to be sent as per truck placed, any short payment will reduce the equively Qty in the truck & any excess payment after final weightment slip will be refuned by company upon submission of ledger.</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="notesOther" class="hidden other-input" placeholder="Enter notes" />
+          </label>
+
+          <label>Souda Confirmation
+            <select id="soudaSelect">
+              <option>The above souda confirmation will be sent to broker via whatsapp/E-mail & broker need to confirm the same within 24 hrs else these souda will be treated as confirm without any brokers/buyers confirmation.</option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="soudaOther" class="hidden other-input" placeholder="Enter souda confirmation" />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Bank details for Payment
+            <select id="bankSelect">
+              <option>Beneficiary Name: Hemraj Industries Private Limited 
+                      Branch Name: Yes Bank Limited.
+                      Branch: Stephen House Branch (India)
+                      IFSC Code: YESB0000190
+                      Account No.:019081400005571
+              </option>
+              <option>Other</option>
+            </select>
+            <input type="text" id="bankOther" class="hidden other-input" placeholder="Enter bank details" />
+          </label>
+
+          <div class="form-actions">
+            <button type="button" id="submitBcBtn" class="btn primary">Submit</button>
+            <button type="button" id="cancelBcBtn" class="btn">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Filters & Export</h2>
+      <div class="filters-grid">
+        <label>From
+          <input type="date" id="filterFrom" />
+        </label>
+        <label>To
+          <input type="date" id="filterTo" />
+        </label>
+        <label>Job No.
+          <input type="text" id="filterJobNo" placeholder="Job No." />
+        </label>
+        <label>BC No.
+          <input type="text" id="filterBcNo" placeholder="Business Confirmation No." />
+        </label>
+
+        <div class="filter-actions">
+          <button id="applyFilterBtn" class="btn">Apply Filter</button>
+          <button id="resetFilterBtn" class="btn">Reset</button>
+          <button id="exportFilteredCSVBtn" class="btn">Export Filtered CSV</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card table-card">
+      <h2>Business Confirmations</h2>
+      <div class="table-actions">
+        <span id="rowsCount">0 records</span>
+        <button id="exportAllCSVBtn" class="btn">Export All CSV</button>
+      </div>
+      <table id="bcTable">
+        <thead>
+          <tr>
+            <th>BC No.</th>
+            <th>Date</th>
+            <th>Job No.</th>
+            <th>Seller</th>
+            <th>Buyer</th>
+            <th>Commodity</th>
+            <th>Qty (MT)</th>
+            <th>Rate/MT (Rs)</th>
+            <th>Nett Amount (Rs)</th>
+            <th>Delivery Date</th>
+            <th>Delivery Location</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="sells.js"></script>
+</body>
+</html>
